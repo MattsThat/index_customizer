@@ -2,6 +2,7 @@ import getdata
 
 
 if __name__ == "__main__":
-    constituents = ['6758:JP']
-    close_price = getdata.get_constituents_price(constituents)
+    instruments = getdata.get_constituent_list()
+    constituents = getdata.get_id(instruments)
+    close_price = getdata.get_constituents_prev_close_price(constituents)
     print(close_price)
