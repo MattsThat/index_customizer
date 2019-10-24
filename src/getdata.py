@@ -13,12 +13,10 @@ def get_constituents_price(constituents):
         url = bbg_url + constituent
         response = requests.get(url)
         page = response.text
-        tags = soup(page)
-        label_tags = tags.find_all('div', class_='cell__label')
-        close_tag = label_tags[3]
-        value_tags = tags.find_all('div', class_='cell__label')
-        price_tag = value_tags[3]
-        result = [close_tag, price_tag]
+        tags = soup(page, features="html.parser")
+        value_tags = tags.find_all('div', class_='cell__value')
+        close_price = value_tags[3].text
+        result.append([constituent, close_price])
     
     return result
 
